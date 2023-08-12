@@ -1,0 +1,24 @@
+name: Run Python Script
+
+on:
+    Workflow_dispatch:
+    
+env:
+    API_Key: ${{ secrets.API_Key }}
+
+jobs:
+    run-python:
+        runs-on: windows-latest
+        steps:
+            - name: Checkout Code
+            uses: actions/checkout@v3
+            
+            - name: Setup Python
+            uses: actions/setup-python@v4
+            with:
+                python-version: '3.11.3'
+                
+            - name: Run Python Script
+            run: |
+                pip install requests
+                python Main.py
